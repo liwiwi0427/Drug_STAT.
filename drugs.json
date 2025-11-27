@@ -1,17 +1,17 @@
 [
     {
-        "id": 1,
-        "generic_name": "Epinephrine (Adrenaline)",
-        "brand_name_en": "Adrenalin",
+        "generic_name": "Epinephrine",
+        "brand_name_en": "Bosmin",
         "brand_name_zh": "腎上腺素",
         "atc_code": "C01CA24",
-        "pregnancy_category": "C",
         "nhi_code": "AC02538209",
         "category": "急救/升壓",
+        "pregnancy_category": "C",
         "mechanism": "興奮 α 與 β 受體，增加心肌收縮力、心跳速率，收縮血管提升血壓，並鬆弛支氣管。",
         "indication": "心跳停止 (Asystole/PEA/VF/VT)、過敏性休克、嚴重氣喘。",
         "side_effect": "心悸、高血壓、焦慮、手抖、若外滲可能導致組織壞死。",
-        "precautions": "1. 給藥濃度極為重要：急救用 1:10,000，過敏用 1:1,000。\n2. 冠狀動脈疾病患者需謹慎。"
+        "precautions": "1. 給藥濃度極為重要：急救用 1:10,000，過敏用 1:1,000。\n2. 冠狀動脈疾病患者需謹慎。",
+        "id": 1
     },
     {
         "id": 2,
@@ -364,74 +364,74 @@
         "precautions": "1. 需密切監測血糖。"
     },
     {
-        "id": 27,
         "generic_name": "Hydrocortisone",
-        "brand_name_en": "Solu-Cortef",
-        "brand_name_zh": "蘇汝可體",
+        "brand_name_en": "Hydrocortisone",
+        "brand_name_zh": "舒爾體爽",
         "atc_code": "H02AB09",
-        "pregnancy_category": "C",
         "nhi_code": "BC10660238",
         "category": "呼吸道/免疫",
+        "pregnancy_category": "C",
         "mechanism": "短效類固醇。",
         "indication": "腎上腺功能不全、過敏。",
         "side_effect": "水腫、電解質不平衡。",
-        "precautions": "1. 具礦物皮質酮作用。"
+        "precautions": "1. 具礦物皮質酮作用。",
+        "id": 27
     },
     {
-        "id": 28,
         "generic_name": "Diphenhydramine",
         "brand_name_en": "Vena",
-        "brand_name_zh": "貝拉",
+        "brand_name_zh": "鹽酸二苯胺明",
         "atc_code": "R06AA02",
-        "pregnancy_category": "B",
         "nhi_code": "AC09361209",
         "category": "過敏",
+        "pregnancy_category": "B",
         "mechanism": "第一代抗組織胺。",
         "indication": "蕁麻疹、過敏反應。",
         "side_effect": "嗜睡、口乾。",
-        "precautions": "1. 老年人易產生譫妄。"
+        "precautions": "1. 老年人易產生譫妄。",
+        "id": 28
     },
     {
-        "id": 29,
         "generic_name": "Ceftriaxone",
-        "brand_name_en": "Rocephin",
-        "brand_name_zh": "羅氏芬",
+        "brand_name_en": "Ceftriaxone",
+        "brand_name_zh": "西特亞山德士",
         "atc_code": "J01DD04",
-        "pregnancy_category": "B",
         "nhi_code": "BC19280229",
         "category": "抗生素",
+        "pregnancy_category": "B",
         "mechanism": "第三代頭孢菌素。",
         "indication": "肺炎、泌尿道感染。",
         "side_effect": "腹瀉、膽泥淤積。",
-        "precautions": "1. 不可與含鈣輸液同管路。"
+        "precautions": "1. 不可與含鈣輸液同管路。",
+        "id": 29
     },
     {
-        "id": 30,
         "generic_name": "Amoxicillin/Clavulanate",
-        "brand_name_en": "Augmentin",
-        "brand_name_zh": "安滅菌",
+        "brand_name_en": "Soonmelt",
+        "brand_name_zh": "雙合黴素",
         "atc_code": "J01CR02",
-        "pregnancy_category": "B",
         "nhi_code": "BC18680100",
         "category": "抗生素",
+        "pregnancy_category": "B",
         "mechanism": "PCN + β-lactamase 抑制劑。",
         "indication": "呼吸道感染、咬傷。",
         "side_effect": "腹瀉。",
-        "precautions": "1. 對 Penicillin 過敏者禁用。"
+        "precautions": "1. 對 Penicillin 過敏者禁用。",
+        "id": 30
     },
     {
-        "id": 31,
         "generic_name": "Piperacillin/Tazobactam",
-        "brand_name_en": "Tazocin",
-        "brand_name_zh": "塔索信",
+        "brand_name_en": "Tapimycin",
+        "brand_name_zh": "達比黴素",
         "atc_code": "J01CR05",
-        "pregnancy_category": "B",
         "nhi_code": "BC22422248",
         "category": "抗生素",
+        "pregnancy_category": "B",
         "mechanism": "廣效性 Penicillin。",
         "indication": "嚴重肺炎、敗血症。",
         "side_effect": "腹瀉、血小板低下。",
-        "precautions": "1. 腎功能不全需調整。"
+        "precautions": "1. 腎功能不全需調整。",
+        "id": 31
     },
     {
         "id": 32,
@@ -448,74 +448,74 @@
         "precautions": "1. 孕婦及兒童不建議使用。"
     },
     {
-        "id": 33,
         "generic_name": "Vancomycin",
         "brand_name_en": "Vancocin",
-        "brand_name_zh": "梵可黴素",
+        "brand_name_zh": "萬古黴素",
         "atc_code": "J01XA01",
-        "pregnancy_category": "C",
         "nhi_code": "BC16010212",
         "category": "抗生素",
+        "pregnancy_category": "C",
         "mechanism": "抑制細胞壁合成。",
         "indication": "MRSA 感染。",
         "side_effect": "紅人症候群、腎毒性。",
-        "precautions": "1. 輸注速度需慢 (>1小時)。"
+        "precautions": "1. 輸注速度需慢 (>1小時)。",
+        "id": 33
     },
     {
-        "id": 34,
         "generic_name": "Metronidazole",
         "brand_name_en": "Flagyl",
-        "brand_name_zh": "傅利吉",
+        "brand_name_zh": "妳樂淨",
         "atc_code": "P01AB01",
-        "pregnancy_category": "B",
         "nhi_code": "AC09228209",
         "category": "抗生素",
+        "pregnancy_category": "B",
         "mechanism": "破壞細菌 DNA。",
         "indication": "厭氧菌感染、腹內膿瘍。",
         "side_effect": "金屬味覺、Disulfiram 樣反應。",
-        "precautions": "1. 絕對嚴禁飲酒。"
+        "precautions": "1. 絕對嚴禁飲酒。",
+        "id": 34
     },
     {
-        "id": 35,
         "generic_name": "Metoclopramide",
         "brand_name_en": "Primperan",
-        "brand_name_zh": "腹寧朗",
+        "brand_name_zh": "胃明朗",
         "atc_code": "A03FA01",
-        "pregnancy_category": "B",
         "nhi_code": "AC04179209",
         "category": "腸胃",
+        "pregnancy_category": "B",
         "mechanism": "多巴胺拮抗劑。",
         "indication": "噁心、嘔吐。",
         "side_effect": "錐體外症候群 (EPS)。",
-        "precautions": "1. 懷疑腸阻塞者禁用。"
+        "precautions": "1. 懷疑腸阻塞者禁用。",
+        "id": 35
     },
     {
-        "id": 36,
         "generic_name": "Hyoscine-N-butylbromide",
         "brand_name_en": "Buscopan",
-        "brand_name_zh": "補斯可胖",
+        "brand_name_zh": "胃使可胖",
         "atc_code": "A03BB01",
-        "pregnancy_category": "C",
         "nhi_code": "BC09650212",
         "category": "腸胃",
+        "pregnancy_category": "C",
         "mechanism": "抗膽鹼藥物。",
         "indication": "胃痛、腸絞痛。",
         "side_effect": "口乾、解尿困難。",
-        "precautions": "1. 青光眼、攝護腺肥大慎用。"
+        "precautions": "1. 青光眼、攝護腺肥大慎用。",
+        "id": 36
     },
     {
-        "id": 37,
         "generic_name": "Ondansetron",
         "brand_name_en": "Zofran",
-        "brand_name_zh": "卓法蘭",
+        "brand_name_zh": "蘇普瑞",
         "atc_code": "A04AA01",
-        "pregnancy_category": "B",
         "nhi_code": "BC20703209",
         "category": "腸胃",
+        "pregnancy_category": "B",
         "mechanism": "5-HT3 拮抗劑。",
         "indication": "化療/術後噁心嘔吐。",
         "side_effect": "頭痛、便秘。",
-        "precautions": "1. 健保給付有條件限制。"
+        "precautions": "1. 健保給付有條件限制。",
+        "id": 37
     },
     {
         "id": 38,
@@ -686,32 +686,32 @@
         "precautions": "1. 治療高血鉀需併用葡萄糖。"
     },
     {
-        "id": 50,
         "generic_name": "Flumazenil",
         "brand_name_en": "Anexate",
-        "brand_name_zh": "安尼歇特",
+        "brand_name_zh": "安易醒",
         "atc_code": "V03AB25",
-        "pregnancy_category": "C",
         "nhi_code": "BC19000209",
         "category": "解毒",
+        "pregnancy_category": "C",
         "mechanism": "BZD 拮抗劑。",
         "indication": "BZD 中毒。",
         "side_effect": "癲癇發作。",
-        "precautions": "1. 癲癇病人慎用。"
+        "precautions": "1. 癲癇病人慎用。",
+        "id": 50
     },
     {
-        "id": 51,
         "generic_name": "Naloxone",
         "brand_name_en": "Narcan",
-        "brand_name_zh": "納洛酮",
+        "brand_name_zh": "解麻",
         "atc_code": "V03AB15",
-        "pregnancy_category": "B",
         "nhi_code": "AC42409209",
         "category": "解毒",
+        "pregnancy_category": "B",
         "mechanism": "鴉片拮抗劑。",
         "indication": "鴉片類過量。",
         "side_effect": "急性戒斷症狀。",
-        "precautions": "1. 作用短，需重複給藥。"
+        "precautions": "1. 作用短，需重複給藥。",
+        "id": 51
     },
     {
         "id": 52,
@@ -742,18 +742,18 @@
         "precautions": "1. 髒汙傷口需補打。"
     },
     {
-        "id": 54,
         "generic_name": "Lidocaine",
         "brand_name_en": "Xylocaine",
-        "brand_name_zh": "係碌卡因",
+        "brand_name_zh": "利多卡因",
         "atc_code": "N01BB02",
-        "pregnancy_category": "B",
         "nhi_code": "AC09855221",
         "category": "心血管/麻醉",
+        "pregnancy_category": "B",
         "mechanism": "鈉離子通道阻斷。",
         "indication": "局部麻醉、VF/VT。",
         "side_effect": "頭暈、癲癇。",
-        "precautions": "1. 末梢禁用含 Epi 者。"
+        "precautions": "1. 末梢禁用含 Epi 者。",
+        "id": 54
     },
     {
         "id": 55,
