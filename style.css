@@ -1,109 +1,151 @@
-/* style.css - 簡潔版 */
+/* style.css - 升級版 */
 :root {
-    --primary: #0d47a1;    /* 專業深藍 */
-    --bg-color: #f4f6f8;
-    --card-bg: #ffffff;
-    --text-main: #333;
-    --text-light: #666;
-    --border-radius: 8px;
+    /* 預設亮色主題 (Light Mode) */
+    --bg-body: #f0f2f5;
+    --bg-card: #ffffff;
+    --text-main: #2d3748;
+    --text-sub: #718096;
+    --primary: #2563eb;
+    --accent: #ef4444;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --radius: 12px;
+}
+
+/* 夜間模式變數 (Dark Mode) */
+[data-theme="dark"] {
+    --bg-body: #1a202c;
+    --bg-card: #2d3748;
+    --text-main: #f7fafc;
+    --text-sub: #a0aec0;
+    --primary: #63b3ed;
+    --accent: #fc8181;
+    --border: #4a5568;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    margin: 0;
-    padding: 0;
+    margin: 0; font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+    background: var(--bg-body); color: var(--text-main);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Header */
 header {
-    background: #fff;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    background: var(--bg-card); padding: 15px 30px;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100;
 }
-.brand h1 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
-.brand p { margin: 5px 0 0; color: #888; font-size: 0.9rem; letter-spacing: 1px; }
-.c-blue { color: var(--primary); }
-.c-red { color: #d32f2f; }
+.brand h1 { margin: 0; font-size: 1.5rem; letter-spacing: -0.5px; }
+.brand .dot { color: var(--accent); }
+.brand p { margin: 0; font-size: 0.8rem; color: var(--text-sub); }
 
-/* Container */
+.icon-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-main); font-size: 1.2rem;
+    width: 40px; height: 40px; border-radius: 50%;
+    cursor: pointer; transition: 0.2s; margin-left: 8px;
+}
+.icon-btn:hover { transform: scale(1.1); background: var(--border); }
+
+/* Container & Search */
 .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+.search-wrapper { margin-bottom: 30px; text-align: center; }
 
-/* Search */
-.search-box { text-align: center; margin-bottom: 30px; }
 #searchInput {
-    width: 100%; max-width: 500px; padding: 12px 20px;
-    font-size: 1rem; border: 2px solid #ddd; border-radius: 50px;
-    outline: none; transition: 0.3s;
+    width: 100%; max-width: 600px; padding: 15px 25px;
+    font-size: 1.1rem; border: 2px solid var(--border); border-radius: 50px;
+    background: var(--bg-card); color: var(--text-main);
+    outline: none; transition: 0.3s; box-shadow: var(--shadow);
 }
-#searchInput:focus { border-color: var(--primary); }
+#searchInput:focus { border-color: var(--primary); transform: scale(1.02); }
 
-.cats { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+/* Filter Tabs */
+.filter-bar { margin-top: 20px; }
+.tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
+.tab-btn {
+    background: transparent; border: none; color: var(--text-sub);
+    font-size: 1rem; font-weight: bold; cursor: pointer; padding: 5px 10px;
+    border-bottom: 3px solid transparent; transition: 0.3s;
+}
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+.cats { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .cats button {
-    background: #fff; border: 1px solid #ccc; color: #555;
-    padding: 6px 15px; border-radius: 20px; cursor: pointer; transition: 0.2s;
+    background: var(--bg-card); border: 1px solid var(--border);
+    color: var(--text-sub); padding: 6px 14px; border-radius: 20px;
+    cursor: pointer; transition: 0.2s; font-size: 0.9rem;
 }
 .cats button:hover, .cats button.active {
-    background: var(--primary); color: #fff; border-color: var(--primary);
+    background: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-2px);
 }
 
-/* Grid Layout */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-}
+/* Grid Cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 
 .card {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    border-left: 5px solid var(--primary);
-    cursor: pointer;
-    transition: transform 0.2s;
+    background: var(--bg-card); padding: 20px; border-radius: var(--radius);
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+    cursor: pointer; position: relative; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fadeInUp 0.5s ease backwards;
 }
-.card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.card h3 { margin: 0 0 5px; color: var(--primary); }
-.card .sub { font-size: 0.9rem; color: #555; font-weight: bold; }
-.card .zh { font-size: 0.9rem; color: #888; }
-.atc-small { float: right; font-size: 0.75rem; background: #eee; padding: 2px 6px; border-radius: 4px; color: #666; }
+/* 卡片出現動畫 */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-color: var(--primary); }
+.card::before { content:''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--primary); }
+
+.card-header { display: flex; justify-content: space-between; align-items: start; }
+.card h3 { margin: 0; color: var(--primary); font-size: 1.2rem; }
+.card .sub { font-size: 0.9rem; font-weight: 600; margin: 4px 0; }
+.card .zh { color: var(--text-sub); font-size: 0.9rem; }
+.card-atc { position: absolute; bottom: 15px; right: 15px; font-size: 0.75rem; color: var(--text-sub); opacity: 0.6; }
+
+/* 卡片上的愛心按鈕 */
+.card-fav {
+    background: none; border: none; font-size: 1.2rem; color: #cbd5e0;
+    position: absolute; top: 15px; right: 15px; cursor: pointer; transition: 0.2s;
+}
+.card-fav:hover { transform: scale(1.2); }
+.card-fav.active { color: #e53e3e; }
+
+/* Empty State */
+.empty-state { text-align: center; padding: 50px; color: var(--text-sub); }
+.empty-state .emoji { font-size: 4rem; margin-bottom: 10px; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
 /* Modal */
-.modal {
-    display: none; position: fixed; z-index: 999;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    backdrop-filter: blur(2px);
-}
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
 .modal-content {
-    background: #fff; margin: 5vh auto; width: 90%; max-width: 600px;
-    border-radius: var(--border-radius); overflow: hidden;
-    animation: slideDown 0.3s ease;
+    background: var(--bg-card); margin: 5vh auto; width: 90%; max-width: 600px;
+    border-radius: var(--radius); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    overflow: hidden; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-@keyframes slideDown { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
+@keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-.modal-header { padding: 25px; border-bottom: 1px solid #eee; position: relative; }
-.close-btn { position: absolute; right: 20px; top: 20px; font-size: 24px; cursor: pointer; color: #999; }
+.modal-header { padding: 25px; border-bottom: 1px solid var(--border); position: relative; }
+.header-top { display: flex; justify-content: space-between; align-items: center; }
+.close-btn { position: absolute; right: 20px; top: 15px; font-size: 2rem; cursor: pointer; color: var(--text-sub); }
 
-.title-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+.fav-icon { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #cbd5e0; transition: 0.2s; }
+.fav-icon.active { color: #e53e3e; }
+
 .modal-header h2 { margin: 0; color: var(--primary); }
-.sub-title { font-size: 1.1rem; color: #333; font-weight: bold; }
-.zh-title { color: #666; margin-bottom: 10px; }
-
-.tags-row { display: flex; gap: 10px; font-size: 0.85rem; }
-.badge-atc, .badge-nhi { background: #f0f0f0; padding: 4px 8px; border-radius: 4px; font-family: monospace; color: #555; }
-
-/* 孕婦分級顏色 */
-.badge-preg { padding: 3px 8px; border-radius: 12px; color: #fff; font-weight: bold; font-size: 0.85rem; }
-.preg-A, .preg-B { background: #4caf50; } /* 綠 */
-.preg-C { background: #ff9800; }        /* 橘 */
-.preg-D, .preg-X { background: #f44336; } /* 紅 */
+.sub-title { font-size: 1.1rem; font-weight: bold; }
+.zh-title { color: var(--text-sub); margin-bottom: 10px; }
+.tags { display: flex; gap: 8px; margin-bottom: 8px; }
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; color: #fff; }
+.badge.gray { background: var(--border); color: var(--text-sub); }
+.nhi-code { font-family: monospace; background: var(--bg-body); display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; color: var(--text-main); }
 
 .modal-body { padding: 25px; max-height: 60vh; overflow-y: auto; }
-.info-sec { margin-bottom: 20px; }
-.info-sec h4 { margin: 0 0 5px; color: #444; border-bottom: 2px solid #eee; padding-bottom: 5px; font-size: 0.95rem; }
-.info-sec p { margin: 0; line-height: 1.6; color: #333; }
-.warn-box { background: #fff5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #f44336; }
+.section { margin-bottom: 20px; }
+.section h4 { color: var(--text-sub); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.section p { margin: 0; line-height: 1.6; }
+.section.warn p { background: rgba(239, 68, 68, 0.1); color: var(--accent); padding: 10px; border-radius: 8px; border-left: 3px solid var(--accent); }
+
+/* 懷孕分級顏色 */
+.cat-A, .cat-B { background: #48bb78; }
+.cat-C { background: #ed8936; }
+.cat-D, .cat-X { background: #f56565; }
