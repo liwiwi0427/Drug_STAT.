@@ -1,0 +1,109 @@
+/* style.css - 簡潔版 */
+:root {
+    --primary: #0d47a1;    /* 專業深藍 */
+    --bg-color: #f4f6f8;
+    --card-bg: #ffffff;
+    --text-main: #333;
+    --text-light: #666;
+    --border-radius: 8px;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.brand h1 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
+.brand p { margin: 5px 0 0; color: #888; font-size: 0.9rem; letter-spacing: 1px; }
+.c-blue { color: var(--primary); }
+.c-red { color: #d32f2f; }
+
+/* Container */
+.container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+
+/* Search */
+.search-box { text-align: center; margin-bottom: 30px; }
+#searchInput {
+    width: 100%; max-width: 500px; padding: 12px 20px;
+    font-size: 1rem; border: 2px solid #ddd; border-radius: 50px;
+    outline: none; transition: 0.3s;
+}
+#searchInput:focus { border-color: var(--primary); }
+
+.cats { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+.cats button {
+    background: #fff; border: 1px solid #ccc; color: #555;
+    padding: 6px 15px; border-radius: 20px; cursor: pointer; transition: 0.2s;
+}
+.cats button:hover, .cats button.active {
+    background: var(--primary); color: #fff; border-color: var(--primary);
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--primary);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.card h3 { margin: 0 0 5px; color: var(--primary); }
+.card .sub { font-size: 0.9rem; color: #555; font-weight: bold; }
+.card .zh { font-size: 0.9rem; color: #888; }
+.atc-small { float: right; font-size: 0.75rem; background: #eee; padding: 2px 6px; border-radius: 4px; color: #666; }
+
+/* Modal */
+.modal {
+    display: none; position: fixed; z-index: 999;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(2px);
+}
+.modal-content {
+    background: #fff; margin: 5vh auto; width: 90%; max-width: 600px;
+    border-radius: var(--border-radius); overflow: hidden;
+    animation: slideDown 0.3s ease;
+}
+@keyframes slideDown { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
+
+.modal-header { padding: 25px; border-bottom: 1px solid #eee; position: relative; }
+.close-btn { position: absolute; right: 20px; top: 20px; font-size: 24px; cursor: pointer; color: #999; }
+
+.title-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+.modal-header h2 { margin: 0; color: var(--primary); }
+.sub-title { font-size: 1.1rem; color: #333; font-weight: bold; }
+.zh-title { color: #666; margin-bottom: 10px; }
+
+.tags-row { display: flex; gap: 10px; font-size: 0.85rem; }
+.badge-atc, .badge-nhi { background: #f0f0f0; padding: 4px 8px; border-radius: 4px; font-family: monospace; color: #555; }
+
+/* 孕婦分級顏色 */
+.badge-preg { padding: 3px 8px; border-radius: 12px; color: #fff; font-weight: bold; font-size: 0.85rem; }
+.preg-A, .preg-B { background: #4caf50; } /* 綠 */
+.preg-C { background: #ff9800; }        /* 橘 */
+.preg-D, .preg-X { background: #f44336; } /* 紅 */
+
+.modal-body { padding: 25px; max-height: 60vh; overflow-y: auto; }
+.info-sec { margin-bottom: 20px; }
+.info-sec h4 { margin: 0 0 5px; color: #444; border-bottom: 2px solid #eee; padding-bottom: 5px; font-size: 0.95rem; }
+.info-sec p { margin: 0; line-height: 1.6; color: #333; }
+.warn-box { background: #fff5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #f44336; }
