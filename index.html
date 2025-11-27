@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug STAT. | 急診藥物速查</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <!-- 簡單俐落的 Logo -->
+            <h1><span class="c-blue">Drug</span> STAT<span class="c-red">.</span></h1>
+            <p>Emergency Drug Database</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 搜尋與過濾區 -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜尋藥名、健保碼、適應症...">
+            <div class="cats" id="catGroup">
+                <button class="active" data-cat="all">全部</button>
+                <button data-cat="急救">急救</button>
+                <button data-cat="心血管">心血管</button>
+                <button data-cat="止痛">止痛</button>
+                <button data-cat="抗生素">抗生素</button>
+                <button data-cat="腸胃">腸胃</button>
+                <button data-cat="神經">神經</button>
+                <button data-cat="代謝">代謝</button>
+            </div>
+        </div>
+
+        <!-- 藥物列表 -->
+        <div id="grid" class="grid"></div>
+    </div>
+
+    <!-- 詳細資料 Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            
+            <div class="modal-header">
+                <div class="title-row">
+                    <h2 id="m-name">藥物學名</h2>
+                    <span id="m-preg" class="badge-preg">Cat.?</span>
+                </div>
+                <div class="sub-title" id="m-en">Brand Name</div>
+                <div class="zh-title" id="m-zh">中文商品名</div>
+                
+                <div class="tags-row">
+                    <span class="badge-atc">ATC: <span id="m-atc"></span></span>
+                    <span class="badge-nhi">NHI: <span id="m-nhi"></span></span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="info-sec">
+                    <h4>⚙️ 機轉 Mechanism</h4>
+                    <p id="m-mech"></p>
+                </div>
+                <div class="info-sec">
+                    <h4>🎯 適應症 Indication</h4>
+                    <p id="m-ind"></p>
+                </div>
+                <div class="info-sec">
+                    <h4>⚠️ 副作用 Side Effects</h4>
+                    <p id="m-side"></p>
+                </div>
+                <div class="info-sec warn-box">
+                    <h4>⛔ 注意事項 Precautions</h4>
+                    <p id="m-warn"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
