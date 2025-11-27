@@ -3,81 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drug STAT. 資料編輯器</title>
-    <style>
-        :root { --primary: #0d47a1; --bg: #f4f6f8; --border: #ddd; }
-        body { margin: 0; font-family: sans-serif; background: var(--bg); height: 100vh; display: flex; flex-direction: column; }
-        
-        /* 頂部導航 */
-        header { background: #fff; padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        h1 { margin: 0; font-size: 1.2rem; color: var(--primary); }
-        .actions button { cursor: pointer; padding: 8px 15px; border: none; border-radius: 4px; font-weight: bold; }
-        .btn-download { background: #2e7d32; color: white; }
-        .btn-home { background: transparent; color: #555; border: 1px solid #ccc; margin-right: 10px; }
-
-        /* 主畫面佈局 */
-        .container { display: flex; flex: 1; overflow: hidden; }
-        
-        /* 左側列表 */
-        .sidebar { width: 300px; background: #fff; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-        .search-bar { padding: 10px; border-bottom: 1px solid var(--border); }
-        .search-bar input { width: 92%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-        .drug-list { flex: 1; overflow-y: auto; list-style: none; padding: 0; margin: 0; }
-        .list-item { padding: 12px 15px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s; }
-        .list-item:hover { background: #f0f0f0; }
-        .list-item.active { background: #e3f2fd; border-left: 4px solid var(--primary); }
-        .list-item b { display: block; font-size: 0.95rem; color: #333; }
-        .list-item small { color: #888; }
-        .add-btn-area { padding: 10px; border-top: 1px solid var(--border); }
-        .btn-add { width: 100%; padding: 10px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; }
-
-        /* 右側編輯區 */
-        .editor-area { flex: 1; padding: 30px; overflow-y: auto; display: none; } /* 預設隱藏，點選後顯示 */
-        .editor-area.show { display: block; }
-        
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 800px; }
-        .full-width { grid-column: span 2; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; font-size: 0.9rem; }
-        .form-group input, .form-group select, .form-group textarea { 
-            width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; 
-        }
-        .form-group textarea { height: 80px; resize: vertical; }
-
-        .form-footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; display: flex; justify-content: space-between; max-width: 800px; }
-        .btn-save { background: var(--primary); color: white; padding: 10px 25px; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;}
-        .btn-del { background: #d32f2f; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
-
-        /* 提示 */
-        .status-msg { position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 10px 20px; border-radius: 4px; display: none; }
-    </style>
+    <title>Drug STAT. 資料庫管理</title>
+    <!-- 引入外部 CSS -->
+    <link rel="stylesheet" href="editor.css">
 </head>
 <body>
 
 <header>
-    <h1>Drug STAT. 後台編輯器</h1>
+    <h1>Drug STAT. <span style="font-size:0.8em; color:#666;">後台編輯器</span></h1>
     <div class="actions">
-        <button class="btn-home" onclick="location.href='index.html'">回到首頁</button>
+        <a href="index.html" class="btn-home">🏠 回前台首頁</a>
         <button class="btn-download" onclick="downloadJSON()">⬇️ 下載新的 drugs.json</button>
     </div>
 </header>
 
 <div class="container">
-    <!-- 左側清單 -->
+    <!-- 左側：搜尋與清單 -->
     <div class="sidebar">
         <div class="search-bar">
-            <input type="text" id="searchBox" placeholder="搜尋藥物..." oninput="filterList()">
+            <input type="text" id="searchBox" placeholder="搜尋藥名..." oninput="filterList()">
         </div>
         <ul class="drug-list" id="drugList">
-            <!-- JS 產生列表 -->
+            <!-- JS 會自動產生列表 -->
         </ul>
         <div class="add-btn-area">
-            <button class="btn-add" onclick="addNew()">+ 新增藥物</button>
+            <button class="btn-add" onclick="addNew()">+ 新增藥物資料</button>
         </div>
     </div>
 
-    <!-- 右側表單 -->
+    <!-- 右側：編輯表單 -->
     <div class="editor-area" id="editorArea">
-        <h2 id="editTitle">編輯藥物</h2>
+        <div class="editor-header">
+            <h2 id="editTitle">編輯藥物</h2>
+            <span class="id-badge">ID: <span id="displayId">-</span></span>
+        </div>
+        
         <form id="drugForm" onsubmit="saveDrug(event)">
             <input type="hidden" id="id">
             
@@ -86,189 +46,86 @@
                     <label>英文學名 (Generic Name)</label>
                     <input type="text" id="generic_name" required>
                 </div>
+                
                 <div class="form-group">
                     <label>英文商品名 (Brand Name EN)</label>
                     <input type="text" id="brand_name_en">
                 </div>
+                
                 <div class="form-group">
                     <label>中文商品名 (Brand Name ZH)</label>
                     <input type="text" id="brand_name_zh">
                 </div>
+                
                 <div class="form-group">
                     <label>ATC 代碼</label>
                     <input type="text" id="atc_code">
                 </div>
+                
                 <div class="form-group">
                     <label>健保代碼 (NHI Code)</label>
                     <input type="text" id="nhi_code">
                 </div>
+                
                 <div class="form-group">
                     <label>分類 (Category)</label>
                     <input type="text" id="category" list="catList">
                     <datalist id="catList">
                         <option value="急救/升壓"><option value="心血管"><option value="止痛"><option value="抗生素">
                         <option value="呼吸道"><option value="腸胃"><option value="神經/鎮靜"><option value="代謝">
+                        <option value="血液"><option value="電解質"><option value="婦產/急救"><option value="解毒">
                     </datalist>
                 </div>
+                
                 <div class="form-group">
-                    <label>懷孕分級 (Pregnancy)</label>
+                    <label>懷孕分級 (Pregnancy Category)</label>
                     <select id="pregnancy_category">
                         <option value="">未知</option>
                         <option value="A">A (安全)</option>
                         <option value="B">B (可能安全)</option>
-                        <option value="C">C (謹慎)</option>
-                        <option value="D">D (危險)</option>
-                        <option value="X">X (禁用)</option>
+                        <option value="C">C (謹慎使用)</option>
+                        <option value="D">D (危險但必要時可用)</option>
+                        <option value="X">X (絕對禁用)</option>
                     </select>
                 </div>
 
-                <div class="form-group full-width"><label>藥理機轉 (Mechanism)</label><textarea id="mechanism"></textarea></div>
-                <div class="form-group full-width"><label>適應症 (Indication)</label><textarea id="indication"></textarea></div>
-                <div class="form-group full-width"><label>副作用 (Side Effect)</label><textarea id="side_effect"></textarea></div>
-                <div class="form-group full-width"><label>注意事項 (Precautions)</label><textarea id="precautions"></textarea></div>
+                <div class="form-group full-width">
+                    <label>藥理機轉 (Mechanism)</label>
+                    <textarea id="mechanism"></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>適應症 (Indication)</label>
+                    <textarea id="indication"></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>副作用 (Side Effect)</label>
+                    <textarea id="side_effect"></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>注意事項 (Precautions)</label>
+                    <textarea id="precautions"></textarea>
+                </div>
             </div>
 
             <div class="form-footer">
-                <button type="button" class="btn-del" onclick="deleteDrug()">刪除此藥物</button>
-                <button type="submit" class="btn-save">確認修改 (暫存)</button>
+                <button type="button" class="btn-del" onclick="deleteDrug()">🗑️ 刪除</button>
+                <button type="submit" class="btn-save">💾 確認修改 (暫存)</button>
             </div>
         </form>
     </div>
+    
+    <!-- 空白狀態提示 -->
+    <div id="emptyState" class="empty-state">
+        <p>👈 請從左側選擇藥物，或點擊「新增藥物」</p>
+    </div>
 </div>
 
-<div id="toast" class="status-msg">已儲存！記得最後要下載檔案。</div>
+<div id="toast" class="status-msg">已儲存！</div>
 
-<script>
-    let drugs = [];
-    const fields = ['generic_name', 'brand_name_en', 'brand_name_zh', 'atc_code', 'nhi_code', 'category', 'pregnancy_category', 'mechanism', 'indication', 'side_effect', 'precautions'];
-
-    // 1. 初始化：讀取目前的 JSON
-    fetch('drugs.json')
-        .then(r => r.json())
-        .then(data => {
-            drugs = data;
-            renderList();
-        })
-        .catch(err => alert('找不到 drugs.json，請確認檔案在同資料夾'));
-
-    // 2. 渲染左側列表
-    function renderList(filterText = '') {
-        const listEl = document.getElementById('drugList');
-        listEl.innerHTML = '';
-        
-        const filtered = drugs.filter(d => 
-            d.generic_name.toLowerCase().includes(filterText.toLowerCase()) || 
-            d.brand_name_zh.includes(filterText)
-        );
-
-        filtered.forEach(d => {
-            const li = document.createElement('li');
-            li.className = 'list-item';
-            li.innerHTML = `<b>${d.generic_name}</b><small>${d.brand_name_zh}</small>`;
-            li.onclick = () => loadForm(d.id, li);
-            listEl.appendChild(li);
-        });
-    }
-
-    // 3. 載入表單
-    function loadForm(id, liElement) {
-        document.querySelectorAll('.list-item').forEach(el => el.classList.remove('active'));
-        if(liElement) liElement.classList.add('active');
-
-        const drug = drugs.find(d => d.id === id);
-        if(!drug) return;
-
-        document.getElementById('editorArea').classList.add('show');
-        document.getElementById('editTitle').textContent = "編輯藥物";
-        document.getElementById('id').value = drug.id;
-
-        fields.forEach(f => {
-            document.getElementById(f).value = drug[f] || '';
-        });
-    }
-
-    // 4. 新增模式
-    function addNew() {
-        document.querySelectorAll('.list-item').forEach(el => el.classList.remove('active'));
-        document.getElementById('editorArea').classList.add('show');
-        document.getElementById('editTitle').textContent = "新增藥物";
-        document.getElementById('drugForm').reset();
-        document.getElementById('id').value = 'new';
-        document.getElementById('generic_name').focus();
-    }
-
-    // 5. 儲存 (修改記憶體中的陣列)
-    function saveDrug(e) {
-        e.preventDefault();
-        const idVal = document.getElementById('id').value;
-        const newObj = {};
-        
-        fields.forEach(f => newObj[f] = document.getElementById(f).value);
-
-        if (idVal === 'new') {
-            // 自動產生 ID
-            const maxId = drugs.length > 0 ? Math.max(...drugs.map(d => d.id)) : 0;
-            newObj.id = maxId + 1;
-            drugs.push(newObj);
-        } else {
-            const idx = drugs.findIndex(d => d.id == idVal);
-            if (idx > -1) {
-                newObj.id = parseInt(idVal);
-                drugs[idx] = newObj;
-            }
-        }
-        
-        renderList(document.getElementById('searchBox').value); // 重新整理列表
-        showToast('修改已暫存！請記得按右上角下載。');
-        
-        // 保持選中狀態
-        setTimeout(() => {
-            const items = document.querySelectorAll('.list-item');
-            const target = drugs.findIndex(d => d.id == newObj.id);
-            if(items[target]) items[target].click(); 
-        }, 50);
-    }
-
-    // 6. 刪除
-    function deleteDrug() {
-        const id = parseInt(document.getElementById('id').value);
-        if(!confirm('確定要刪除這筆資料嗎？')) return;
-        
-        drugs = drugs.filter(d => d.id !== id);
-        renderList();
-        document.getElementById('editorArea').classList.remove('show');
-        showToast('已刪除！');
-    }
-
-    // 7. 搜尋
-    function filterList() {
-        renderList(document.getElementById('searchBox').value);
-    }
-
-    // 8. 核心功能：下載 JSON
-    function downloadJSON() {
-        const dataStr = JSON.stringify(drugs, null, 4);
-        const blob = new Blob([dataStr], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'drugs.json';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        
-        alert('檔案已下載！\n請將下載的 drugs.json 覆蓋掉原本資料夾中的檔案即可完成更新。');
-    }
-
-    function showToast(msg) {
-        const t = document.getElementById('toast');
-        t.textContent = msg;
-        t.style.display = 'block';
-        setTimeout(() => t.style.display = 'none', 3000);
-    }
-</script>
-
+<!-- 引入外部 JS -->
+<script src="editor.js"></script>
 </body>
 </html>
